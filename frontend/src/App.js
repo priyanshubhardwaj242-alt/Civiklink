@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { HashRouter, Routes, Route } from 'react-router-dom';
 import TopBar from './components/layout/TopBar';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
@@ -26,7 +26,7 @@ function App() {
   const [fontSize, setFontSize] = useState(16);
 
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Shell fontSize={fontSize}>
         <TopBar language={language} setLanguage={setLanguage} fontSize={fontSize} setFontSize={setFontSize} />
         <Navbar />
@@ -47,7 +47,7 @@ function App() {
         <Footer />
         <AIChatBubble />
       </Shell>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
