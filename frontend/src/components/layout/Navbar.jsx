@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { useLanguage } from '../../i18n';
 import { Home, Search, Sparkles, Calculator, MapPin, MoreHorizontal, LogIn, UserPlus, Menu, X, ChevronDown } from 'lucide-react';
 
 const NAV = [
@@ -12,6 +13,7 @@ const NAV = [
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const { t } = useLanguage();
   const navigate = useNavigate();
 
   return (
@@ -24,9 +26,9 @@ export default function Navbar() {
           <div className="leading-tight">
             <div className="flex items-center gap-1.5">
               <span className="text-white font-bold text-lg tracking-tight">CivicLink</span>
-              <span className="text-[9px] font-semibold bg-orange-500/15 text-orange-400 border border-orange-500/30 px-1.5 py-0.5 rounded uppercase tracking-wider">Official</span>
+              <span className="text-[9px] font-semibold bg-orange-500/15 text-orange-400 border border-orange-500/30 px-1.5 py-0.5 rounded uppercase tracking-wider">{t('Official')}</span>
             </div>
-            <div className="text-[10px] text-slate-400">Government Citizen Platform</div>
+            <div className="text-[10px] text-slate-400"{t('Government Citizen Platform')}</div>
           </div>
         </Link>
 
@@ -48,13 +50,13 @@ export default function Navbar() {
               }
             >
               <Icon size={15} />
-              <span>{label}</span>
+              <span>{t(label)}</span>
               {hasCaret && <ChevronDown size={13} />}
             </NavLink>
           ))}
           <button className="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/60 transition-colors">
             <MoreHorizontal size={15} />
-            More
+            {t('More')}
             <ChevronDown size={13} />
           </button>
         </div>
