@@ -40,14 +40,14 @@ export default function Schemes() {
     <div className="max-w-[1400px] mx-auto px-6 py-8 text-slate-100">
       <div className="rounded-2xl border border-slate-800 bg-[#0f1e37] p-6 md:p-8">
         <div className="flex items-center gap-3">
-          <span className="inline-flex items-center gap-1.5 text-xs px-2.5 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 font-medium"><ShieldCheck size={12} /> GAZETTE VERIFIED REPOSITORY</span>
-          <span className="text-xs text-slate-400">90 Schemes Authoritative</span>
+          <span className="inline-flex items-center gap-1.5 text-xs px-2.5 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 font-medium"><ShieldCheck size={12} /> DBT-LISTED SCHEME REPOSITORY</span>
+          <span className="text-xs text-slate-400">90 Unique Schemes</span>
         </div>
         <div className="mt-4 flex items-center gap-2">
           <BookOpen size={26} className="text-orange-400" />
           <h1 className="text-3xl md:text-4xl font-bold text-white" style={{ fontFamily: 'Georgia, serif' }}>Government Schemes Directory</h1>
         </div>
-        <p className="mt-2 text-slate-400 max-w-3xl">Search and filter 90 authoritative Central and State government welfare schemes verified through official Gazette notifications.{currentCat ? ` \u2022 Filtered by: ${currentCat.name}` : ''}</p>
+        <p className="mt-2 text-slate-400 max-w-3xl">Search and filter 90 unique Government of India schemes listed in the official DBT Bharat scheme directory.{currentCat ? ` \u2022 Filtered by: ${currentCat.name}` : ''}</p>
 
         <div className="mt-5 flex flex-col md:flex-row gap-2">
           <div className="flex-1 flex items-center gap-2 px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 focus-within:border-orange-500">
@@ -89,7 +89,7 @@ export default function Schemes() {
         {filtered.map((s) => (
           <Link to={`/schemes/${s.id}`} key={s.id} className="group rounded-2xl border border-slate-800 bg-[#0f1e37] p-5 hover:border-orange-500/50 hover:bg-[#122549] transition-colors">
             <div className="flex items-center gap-2 flex-wrap">
-              <span className="inline-flex items-center gap-1 text-[11px] px-2 py-0.5 rounded bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 font-medium"><ShieldCheck size={11} /> Government Verified</span>
+              <span className="inline-flex items-center gap-1 text-[11px] px-2 py-0.5 rounded bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 font-medium"><ShieldCheck size={11} /> DBT Listed</span>
               <span className="text-[11px] px-2 py-0.5 rounded bg-sky-500/10 border border-sky-500/30 text-sky-300 font-medium uppercase tracking-wide">{s.tag}</span>
             </div>
             <h3 className="mt-3 text-lg font-bold text-white group-hover:text-orange-300 transition-colors leading-snug">{s.name}</h3>
