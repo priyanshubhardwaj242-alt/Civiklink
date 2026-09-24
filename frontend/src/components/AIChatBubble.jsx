@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Sparkles, X, Send, Mic } from 'lucide-react';
-import { CHAT_QUESTIONS, matchSchemes } from '../mock';
+import { CHAT_QUESTIONS } from '../mock';
+import { matchSchemes } from '../api';
 import { useNavigate } from 'react-router-dom';
 
 export default function AIChatBubble() {
@@ -19,7 +20,7 @@ export default function AIChatBubble() {
 
   const currentQ = CHAT_QUESTIONS[step];
 
-  const submitAnswer = (answer) => {
+  const submitAnswer = async (answer) => {
     if (!answer) return;
     const newProfile = { ...profile, [currentQ.key]: answer };
     setProfile(newProfile);
@@ -31,7 +32,7 @@ export default function AIChatBubble() {
     } else {
       newMsgs.push({ from: 'bot', text: 'Analyzing your profile against 90 government schemes...' });
       setTimeout(() => {
-        const results = matchSchemes(newProfile);
+        const results = await matchSchemes(newProfile);
         try { localStorage.setItem('civiclink_profile', JSON.stringify(newProfile)); } catch (e) { /* ignore */ }
         try { localStorage.setItem('civiclink_results', JSON.stringify(results)); } catch (e) { /* ignore */ }
         setMsgs((m) => [...m, { from: 'bot', text: `Found ${results.length} matching schemes! Opening results...` }]);
