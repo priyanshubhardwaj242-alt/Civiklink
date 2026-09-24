@@ -1,0 +1,19 @@
+name: Temporary ZIP Export
+on:
+  push:
+    branches: [zip-export-temp]
+jobs:
+  zip:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - name: Create project ZIP
+        run: |
+          zip -r CivicLink-project.zip . -x ".git/*" ".github/*"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: CivicLink-project
+          path: CivicLink-project.zip
+          retention-days: 1
