@@ -64,7 +64,7 @@ function AuthPage({ title }) {
         <div className="mt-5 space-y-3">
           <input placeholder={t("Mobile number")} className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2.5 text-slate-100 focus:outline-none focus:border-orange-500" />
           <input placeholder={t("Password / OTP")} type="password" className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2.5 text-slate-100 focus:outline-none focus:border-orange-500" />
-          <button className="w-full px-4 py-2.5 rounded-lg text-white font-semibold bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 transition-colors">{title}</button>
+          <button className="w-full px-4 py-2.5 rounded-lg text-white font-semibold bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 transition-colors"{t(title)}</button>
         </div>
       </div>
     </div>
