@@ -5,6 +5,7 @@ import TopBar from './components/layout/TopBar';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import AIChatBubble from './components/AIChatBubble';
+import { LanguageProvider } from './i18n';
 import Home from './pages/Home';
 import Schemes from './pages/Schemes';
 import Recommendations from './pages/Recommendations';
@@ -27,6 +28,7 @@ function App() {
 
   return (
     <HashRouter>
+      <LanguageProvider language={language} setLanguage={setLanguage}>
       <Shell fontSize={fontSize}>
         <TopBar language={language} setLanguage={setLanguage} fontSize={fontSize} setFontSize={setFontSize} />
         <Navbar />
@@ -47,6 +49,7 @@ function App() {
         <Footer />
         <AIChatBubble />
       </Shell>
+      </LanguageProvider>
     </HashRouter>
   );
 }
