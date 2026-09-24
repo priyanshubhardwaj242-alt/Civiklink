@@ -1,3 +1,5 @@
+import LOCAL_SCHEMES from './data/schemes.json';
+
 // Mock data for CivicLink
 
 export const CATEGORIES = [
@@ -110,54 +112,8 @@ export const APPLICATION_ROUTES = [
   'State Nodal Agency',
 ];
 
-const RAW_SCHEMES = [
-  { name: 'Pradhan Mantri MUDRA Yojana (PMMY)', tag: 'Credit Guarantee & Institutional Refinance Scheme', ministry: 'Ministry of Finance', category: 'msme', desc: 'Collateral-free micro loans up to \u20B920 Lakh under Shishu, Kishor, Tarun, and Tarun Plus categories for small business & entrepreneurs.', loan: '\u20B920 Lakh', rate: 'As per bank', beneficiary: 'MSME Entrepreneurs', sector: 'Credit / Loan', route: 'Bank / Financial Institution' },
-  { name: 'Prime Minister Employment Generation Programme (PMEGP)', tag: 'Credit-Linked Subsidy Scheme', ministry: 'Ministry of Micro, Small and Medium Enterprises', category: 'msme', desc: 'Credit-linked margin money subsidy up to 35% for setting up new micro-enterprises in manufacturing (project cost up to \u20B950 Lakh).', loan: '\u20B950 Lakh', rate: 'As per bank', beneficiary: 'MSME Entrepreneurs', sector: 'Subsidy', route: 'Bank / Financial Institution' },
-  { name: 'Stand-Up India', tag: 'Scheduled Commercial Bank Credit Scheme', ministry: 'Ministry of Finance', category: 'msme', desc: 'Bank loans between \u20B910 Lakh and \u20B91 Crore for SC, ST, and Women entrepreneurs setting up greenfield manufacturing enterprises.', loan: '\u20B91.0 Cr', rate: 'As per bank', beneficiary: 'Women', sector: 'Credit / Loan', route: 'Bank / Financial Institution' },
-  { name: 'PM Vishwakarma Yojana', tag: 'Traditional Artisan Support Scheme', ministry: 'Ministry of Micro, Small and Medium Enterprises', category: 'artisan', desc: 'Toolkit incentive, collateral-free credit up to \u20B93 Lakh, skill training and stipend for 18 traditional craft trades.', loan: '\u20B93 Lakh', rate: '5% concessional', beneficiary: 'Artisans', sector: 'Credit / Loan', route: 'Online Portal' },
-  { name: 'Kisan Credit Card (KCC)', tag: 'Farm Credit Scheme', ministry: 'Ministry of Agriculture & Farmers Welfare', category: 'agri', desc: 'Short-term credit for cultivation expenses, post-harvest, marketing and consumption at concessional interest for farmers.', loan: '\u20B93 Lakh', rate: '4% (with subvention)', beneficiary: 'Farmers', sector: 'Credit / Loan', route: 'Bank / Financial Institution' },
-  { name: 'Pradhan Mantri Kisan Samman Nidhi (PM-KISAN)', tag: 'Direct Income Support', ministry: 'Ministry of Agriculture & Farmers Welfare', category: 'agri', desc: 'Direct income support of \u20B96,000 per year in three equal installments to eligible land-holding farmer families.', loan: '\u20B96,000/yr', rate: 'DBT', beneficiary: 'Farmers', sector: 'Subsidy', route: 'Online Portal' },
-  { name: 'PM-KUSUM (Solar Energy)', tag: 'Solar Pump & Grid Connected Scheme', ministry: 'Ministry of Agriculture & Farmers Welfare', category: 'agri', desc: 'Financial and water security to farmers through installation of solar pumps and grid-connected solar power plants.', loan: '60% subsidy', rate: 'DBT', beneficiary: 'Farmers', sector: 'Subsidy', route: 'State Nodal Agency' },
-  { name: 'National Livestock Mission (NLM)', tag: 'Entrepreneurship Development', ministry: 'Ministry of Agriculture & Farmers Welfare', category: 'agri', desc: 'Capital subsidy up to 50% for entrepreneurship development in poultry, sheep, goat, piggery and fodder sectors.', loan: '\u20B950 Lakh', rate: 'Subsidy', beneficiary: 'Farmers', sector: 'Subsidy', route: 'Online Portal' },
-  { name: 'PM-YASASVI Scholarship', tag: 'OBC / EBC / DNT Scholarship', ministry: 'Ministry of Social Justice and Empowerment', category: 'edu', desc: 'Pre-matric and post-matric scholarships for OBC, EBC and DNT students to pursue quality school and higher education.', loan: '\u20B91.25 Lakh/yr', rate: 'Grant', beneficiary: 'Students', sector: 'Education', route: 'Online Portal' },
-  { name: 'National Means-cum-Merit Scholarship (NMMS)', tag: 'Merit Based Scholarship', ministry: 'Ministry of Education', category: 'edu', desc: '\u20B912,000 per annum scholarship to meritorious students of economically weaker sections from Class 9 to Class 12.', loan: '\u20B912,000/yr', rate: 'Grant', beneficiary: 'Students', sector: 'Education', route: 'Online Portal' },
-  { name: 'Atal Pension Yojana (APY)', tag: 'Guaranteed Pension Scheme', ministry: 'Ministry of Finance', category: 'social', desc: 'Guaranteed minimum pension of \u20B91,000 to \u20B95,000 per month after age 60 for unorganised sector workers.', loan: '\u20B95,000/mo', rate: 'Pension', beneficiary: 'General Citizen', sector: 'Pension', route: 'Bank / Financial Institution' },
-  { name: 'Pradhan Mantri Suraksha Bima Yojana (PMSBY)', tag: 'Accident Insurance', ministry: 'Ministry of Finance', category: 'social', desc: 'Accidental death and disability cover of \u20B92 Lakh at a nominal premium of \u20B920 per year for age 18\u201370.', loan: '\u20B92 Lakh', rate: '\u20B920/yr premium', beneficiary: 'General Citizen', sector: 'Insurance', route: 'Bank / Financial Institution' },
-  { name: 'Pradhan Mantri Jeevan Jyoti Bima Yojana (PMJJBY)', tag: 'Term Life Insurance', ministry: 'Ministry of Finance', category: 'social', desc: 'Renewable term life insurance cover of \u20B92 Lakh at \u20B9436 per year for individuals in the age group 18\u201350.', loan: '\u20B92 Lakh', rate: '\u20B9436/yr premium', beneficiary: 'General Citizen', sector: 'Insurance', route: 'Bank / Financial Institution' },
-  { name: 'Ayushman Bharat \u2013 PMJAY', tag: 'Health Assurance Mission', ministry: 'Ministry of Health and Family Welfare', category: 'health', desc: 'Cashless in-patient hospitalization cover of \u20B95 Lakh per family per year at empanelled hospitals for eligible families.', loan: '\u20B95 Lakh', rate: 'Cashless', beneficiary: 'Below Poverty Line', sector: 'Health', route: 'CSC (Common Service Centre)' },
-  { name: 'Pradhan Mantri Matru Vandana Yojana (PMMVY)', tag: 'Maternity Benefit Scheme', ministry: 'Ministry of Women and Child Development', category: 'health', desc: 'Cash incentive of \u20B95,000 for pregnant women and lactating mothers for the birth of the first living child.', loan: '\u20B95,000', rate: 'DBT', beneficiary: 'Women', sector: 'Health', route: 'District / Block Office' },
-  { name: 'Sukanya Samriddhi Yojana (SSY)', tag: 'Girl Child Savings Scheme', ministry: 'Ministry of Finance', category: 'health', desc: 'Small savings scheme for the girl child with attractive interest rate and tax benefit under Section 80C.', loan: '\u20B91.5 Lakh/yr', rate: '8.2%', beneficiary: 'General Citizen', sector: 'Subsidy', route: 'Bank / Financial Institution' },
-  { name: 'Deendayal Antyodaya Yojana \u2013 NRLM', tag: 'National Rural Livelihoods Mission', ministry: 'Ministry of Rural Development', category: 'agri', desc: 'Self-help group formation, financial inclusion and livelihood support to rural poor households across India.', loan: '\u20B910 Lakh', rate: 'Concessional', beneficiary: 'Women', sector: 'Credit / Loan', route: 'State Nodal Agency' },
-  { name: 'Pradhan Mantri Awas Yojana \u2013 Gramin', tag: 'Rural Housing Mission', ministry: 'Ministry of Rural Development', category: 'social', desc: 'Assistance for construction of pucca houses with basic amenities for rural households living in kutcha and dilapidated houses.', loan: '\u20B91.2 Lakh', rate: 'Grant', beneficiary: 'Below Poverty Line', sector: 'Housing', route: 'District / Block Office' },
-  { name: 'PMAY \u2013 Urban 2.0', tag: 'Affordable Housing Mission', ministry: 'Ministry of Housing and Urban Affairs', category: 'social', desc: 'Interest subsidy and financial assistance for affordable housing to eligible urban households.', loan: '\u20B92.5 Lakh', rate: 'Interest subsidy', beneficiary: 'Below Poverty Line', sector: 'Housing', route: 'Online Portal' },
-  { name: 'Skill India Mission \u2013 PMKVY 4.0', tag: 'Skill Development Programme', ministry: 'Ministry of Skill Development and Entrepreneurship', category: 'edu', desc: 'Short-term skill training and certification for youth with monetary reward and placement assistance.', loan: 'Training', rate: 'Free', beneficiary: 'Students', sector: 'Skill Development', route: 'Online Portal' },
-];
 
-// Expand to 90 schemes by duplicating with variations
-const STATES_SUFFIX = ['(Central)', '(Bihar Extension)', '(Maharashtra Add-on)', '(Karnataka Rider)'];
-export const SCHEMES = (function build() {
-  const out = [];
-  let id = 1;
-  RAW_SCHEMES.forEach((s) => {
-    out.push({ ...s, id: `SCH-${String(id).padStart(3, '0')}`, verified: true });
-    id += 1;
-  });
-  // pad to 90 by cloning with suffix
-  let i = 0;
-  while (out.length < 90) {
-    const base = RAW_SCHEMES[i % RAW_SCHEMES.length];
-    const suffix = STATES_SUFFIX[i % STATES_SUFFIX.length];
-    out.push({
-      ...base,
-      name: `${base.name} ${suffix}`,
-      id: `SCH-${String(id).padStart(3, '0')}`,
-      verified: true,
-    });
-    id += 1;
-    i += 1;
-  }
-  return out;
-})();
+export const SCHEMES = LOCAL_SCHEMES;
 
 export const PARTNERS = [
   { id: 'p1', name: 'Bank of India \u2013 Connaught Place Branch', type: 'Bank / MUDRA Nodal', address: 'Parliament Street, New Delhi, 110001', distance: '1.2 km', phone: '011-2334-5678', state: 'Delhi', district: 'New Delhi' },
