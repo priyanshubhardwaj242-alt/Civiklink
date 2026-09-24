@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Sparkles, Search, ArrowRight, ShieldCheck, FileCheck2, Users2, Lock, Briefcase, Sprout, Hammer, GraduationCap, ShieldCheck as Shield, HeartPulse, ChevronRight } from 'lucide-react';
 import { CATEGORIES, FOCUS_TAGS } from '../mock';
+import { useLanguage } from '../i18n';
 
 const ICONS = { Briefcase, Sprout, Hammer, GraduationCap, ShieldCheck: Shield, HeartPulse };
 
@@ -15,6 +16,7 @@ function NumberBadge({ n }) {
 
 export default function Home() {
   const [search, setSearch] = useState('');
+  const { t } = useLanguage();
 
   return (
     <div className="text-slate-100">
@@ -27,7 +29,7 @@ export default function Home() {
             <span className="w-2 h-2 rounded-full bg-emerald-400" />
             Official Civic-Tech Portal
             <span className="text-slate-600">•</span>
-            <span className="text-orange-300">90 Verified Government Schemes</span>
+            <span className="text-orange-300">{t('90 Verified Government Schemes')}</span>
           </div>
           <h1 className="mt-6 text-4xl md:text-6xl font-extrabold tracking-tight text-white leading-[1.1]" style={{ fontFamily: 'Georgia, serif' }}>
             Find Government Schemes<br />That Fit You
@@ -54,7 +56,7 @@ export default function Home() {
             <div className="inline-flex items-center gap-2 text-xs px-3 py-1.5 rounded-full bg-sky-500/15 border border-sky-500/30 text-sky-300 font-medium">
               <Users2 size={13} /> PERSONALIZED SCHEME MATCHING
             </div>
-            <h2 className="mt-4 text-2xl md:text-3xl font-bold text-white leading-tight" style={{ fontFamily: 'Georgia, serif' }}>Find Government Schemes You May Be Eligible For</h2>
+            <h2 className="mt-4 text-2xl md:text-3xl font-bold text-white leading-tight" style={{ fontFamily: 'Georgia, serif' }}>{t('Find Government Schemes You May Be Eligible For')}</h2>
             <p className="mt-3 text-slate-400">Answer a few questions about your age, category, location, occupation and business needs. CivicLink checks your profile against official scheme eligibility rules.</p>
             <div className="mt-5 grid sm:grid-cols-2 gap-2">
               {['Personalized scheme matching', 'Rule-based eligibility checks', 'Official government sources', 'No document upload required'].map((f) => (
@@ -77,7 +79,7 @@ export default function Home() {
       <section className="max-w-[1400px] mx-auto px-6 mt-16">
         <div className="text-center">
           <div className="inline-flex items-center gap-2 text-xs px-3 py-1.5 rounded-full bg-orange-500/10 border border-orange-500/25 text-orange-300">Transparent 4-Step Process</div>
-          <h2 className="mt-4 text-3xl md:text-4xl font-bold text-white" style={{ fontFamily: 'Georgia, serif' }}>How CivicLink Works for Citizens</h2>
+          <h2 className="mt-4 text-3xl md:text-4xl font-bold text-white" style={{ fontFamily: 'Georgia, serif' }}>{t('How CivicLink Works for Citizens')}</h2>
           <p className="mt-3 text-slate-400 max-w-2xl mx-auto">A transparent 4-step path to discover schemes you may qualify for and access official application routes.</p>
         </div>
         <div className="mt-10 grid md:grid-cols-4 gap-4">
@@ -99,7 +101,7 @@ export default function Home() {
       {/* SEARCH BAR */}
       <section className="max-w-[1400px] mx-auto px-6 mt-14">
         <div className="rounded-2xl border border-slate-800 bg-[#0f1e37] p-6">
-          <h3 className="text-lg font-bold text-white">Search Schemes by Keyword or Focus Area</h3>
+          <h3 className="text-lg font-bold text-white">{t('Search Schemes by Keyword or Focus Area')}</h3>
           <p className="text-sm text-slate-400 mt-1">Quickly explore schemes using direct keywords or popular welfare topics</p>
           <div className="mt-4 flex flex-col md:flex-row gap-2">
             <div className="flex-1 flex items-center gap-2 px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 focus-within:border-orange-500">
@@ -130,7 +132,7 @@ export default function Home() {
       <section className="max-w-[1400px] mx-auto px-6 mt-16">
         <div className="text-center">
           <div className="inline-flex items-center gap-2 text-xs px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-emerald-300">Targeted Welfare Portfolios</div>
-          <h2 className="mt-4 text-3xl md:text-4xl font-bold text-white" style={{ fontFamily: 'Georgia, serif' }}>Explore Schemes by Category</h2>
+          <h2 className="mt-4 text-3xl md:text-4xl font-bold text-white" style={{ fontFamily: 'Georgia, serif' }}>{t('Explore Schemes by Category')}</h2>
           <p className="mt-3 text-slate-400 max-w-2xl mx-auto">Browse verified government welfare portfolios organized by sector and trade.</p>
         </div>
         <div className="mt-10 grid md:grid-cols-2 lg:grid-cols-3 gap-4">
