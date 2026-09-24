@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Calculator as CalcIcon, IndianRupee, Percent, CalendarClock, TrendingUp } from 'lucide-react';
+import { useLanguage } from '../i18n';
 
 function emi(P, R, N) {
   if (!P || !R || !N) return 0;
@@ -10,6 +11,7 @@ function emi(P, R, N) {
 }
 
 export default function Calculator() {
+  const { t } = useLanguage();
   const [P, setP] = useState(500000);
   const [R, setR] = useState(8.5);
   const [N, setN] = useState(36);
@@ -22,7 +24,7 @@ export default function Calculator() {
     <div className="max-w-[1200px] mx-auto px-6 py-8 text-slate-100">
       <div className="rounded-2xl border border-slate-800 bg-[#0f1e37] p-6">
         <div className="inline-flex items-center gap-2 text-xs px-3 py-1.5 rounded-full bg-sky-500/10 border border-sky-500/30 text-sky-300"><CalcIcon size={13} /> LOAN & SUBSIDY CALCULATOR</div>
-        <h1 className="mt-3 text-3xl md:text-4xl font-bold text-white" style={{ fontFamily: 'Georgia, serif' }}>Financial Calculator</h1>
+        <h1 className="mt-3 text-3xl md:text-4xl font-bold text-white" style={{ fontFamily: 'Georgia, serif' }}>{t('Financial Calculator')}</h1>
         <p className="mt-2 text-slate-400 max-w-3xl">Estimate EMI, total interest, and net cost for MUDRA, PMEGP, Stand-Up India and other scheme-backed loans.</p>
       </div>
 
@@ -34,15 +36,15 @@ export default function Calculator() {
         </div>
 
         <div className="rounded-2xl border border-orange-500/30 bg-gradient-to-br from-orange-500/10 to-amber-500/5 p-6">
-          <div className="text-xs text-orange-300 uppercase tracking-widest">Monthly EMI</div>
+          <div className="text-xs text-orange-300 uppercase tracking-widest">{t('Monthly EMI')}</div>
           <div className="mt-2 text-4xl font-bold text-white">₹ {monthly.toLocaleString('en-IN', { maximumFractionDigits: 0 })}</div>
           <div className="mt-6 grid grid-cols-2 gap-3">
             <div className="rounded-lg bg-slate-950/40 border border-slate-800 p-3">
-              <div className="text-[10px] text-slate-400 uppercase">Total Interest</div>
+              <div className="text-[10px] text-slate-400 uppercase">{t('Total Interest')}</div>
               <div className="text-lg font-semibold text-white">₹ {interest.toLocaleString('en-IN', { maximumFractionDigits: 0 })}</div>
             </div>
             <div className="rounded-lg bg-slate-950/40 border border-slate-800 p-3">
-              <div className="text-[10px] text-slate-400 uppercase">Total Payable</div>
+              <div className="text-[10px] text-slate-400 uppercase">{t('Total Payable')}</div>
               <div className="text-lg font-semibold text-white">₹ {total.toLocaleString('en-IN', { maximumFractionDigits: 0 })}</div>
             </div>
           </div>
