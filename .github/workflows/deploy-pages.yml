@@ -6,6 +6,11 @@ on:
       - main
   workflow_dispatch:
 
+# Prevent overlapping deployments from racing on the gh-pages ref.
+concurrency:
+  group: civiclink-pages-deploy
+  cancel-in-progress: true
+
 permissions:
   contents: write
 
@@ -34,4 +39,4 @@ jobs:
           publish_dir: ./frontend/build
           publish_branch: gh-pages
           force_orphan: true
-          commit_message: "Restore original CivicLink frontend"
+          commit_message: "Deploy CivicLink frontend"
