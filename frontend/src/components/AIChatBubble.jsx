@@ -30,8 +30,8 @@ export default function AIChatBubble() {
       newMsgs.push({ from: 'bot', text: CHAT_QUESTIONS[step + 1].q });
       setStep(step + 1);
     } else {
-      newMsgs.push({ from: 'bot', text: 'Analyzing your profile against 90 government schemes...' });
-      setTimeout(() => {
+      newMsgs.push({ from: 'bot', text: 'Analyzing your profile against the CivicLink scheme catalog...' });
+      setTimeout(async () => {
         const results = await matchSchemes(newProfile);
         try { localStorage.setItem('civiclink_profile', JSON.stringify(newProfile)); } catch (e) { /* ignore */ }
         try { localStorage.setItem('civiclink_results', JSON.stringify(results)); } catch (e) { /* ignore */ }
