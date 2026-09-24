@@ -56,7 +56,7 @@ export default function Navbar() {
           ))}
           <button className="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/60 transition-colors">
             <MoreHorizontal size={15} />
-            More
+            {t('More')}
             <ChevronDown size={13} />
           </button>
         </div>
@@ -67,14 +67,14 @@ export default function Navbar() {
             className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-sm font-medium text-slate-200 border border-slate-700 hover:border-slate-500 hover:bg-slate-800/60 transition-colors"
           >
             <LogIn size={15} />
-            Citizen Login
+            {t('Citizen Login')}
           </button>
           <button
             onClick={() => navigate('/register')}
             className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-sm font-semibold text-white bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 shadow-lg shadow-orange-900/30 transition-colors"
           >
             <UserPlus size={15} />
-            Register
+            {t('Register')}
           </button>
           <button onClick={() => setOpen(!open)} className="lg:hidden text-slate-200 p-2">
             {open ? <X size={20} /> : <Menu size={20} />}
@@ -94,7 +94,7 @@ export default function Navbar() {
                 `flex items-center gap-2 px-3 py-2 rounded-lg text-sm ${isActive ? 'bg-slate-800/70 text-white' : 'text-slate-300'}`
               }
             >
-              <Icon size={16} /> {label}
+              <Icon size={16} /> {t(label)}
             </NavLink>
           ))}
         </div>
