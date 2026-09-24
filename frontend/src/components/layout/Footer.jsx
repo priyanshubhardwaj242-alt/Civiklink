@@ -28,14 +28,14 @@ export default function Footer() {
           <ul className="space-y-2 text-sm text-slate-300">
             <li><Link to="/schemes" className="hover:text-orange-400 transition-colors">{t('All Schemes Directory')}</Link></li>
             <li><Link to="/recommendations" className="hover:text-orange-400 transition-colors">{t('Smart Scheme Matching')}</Link></li>
-            <li><Link to="/calculator" className="hover:text-orange-400 transition-colors">Loan &amp; Subsidy Calculator</Link></li>
+            <li><Link to="/calculator" className="hover:text-orange-400 transition-colors">{t('Loan & Subsidy Calculator')}</Link></li>
             <li><Link to="/partners" className="hover:text-orange-400 transition-colors">{t('Nearby Partner Centers')}</Link></li>
             <li><Link to="/login" className="hover:text-orange-400 transition-colors">{t('Sign In / Portal')}</Link></li>
           </ul>
         </div>
 
         <div>
-          <div className="text-xs font-semibold text-slate-500 tracking-widest mb-3">SUPPORT &amp; HELPLINE</div>
+          <div className="text-xs font-semibold text-slate-500 tracking-widest mb-3">{t('SUPPORT & HELPLINE')}</div>
           <ul className="space-y-2 text-sm text-slate-300">
             <li className="flex items-start gap-2"><Phone size={14} className="text-orange-400 mt-0.5" /> 1800-11-2026 (Toll-Free, 9 AM to 6 PM)</li>
             <li className="flex items-start gap-2"><Mail size={14} className="text-orange-400 mt-0.5" /> support@civiclink.gov.in</li>
@@ -44,10 +44,10 @@ export default function Footer() {
         </div>
 
         <div>
-          <div className="text-xs font-semibold text-slate-500 tracking-widest mb-3">GOVERNANCE &amp; TRUST</div>
+          <div className="text-xs font-semibold text-slate-500 tracking-widest mb-3">{t('GOVERNANCE & TRUST')}</div>
           <p className="text-sm text-slate-400 mb-3">Designed to eliminate financial misrepresentation and opaque approvals in welfare delivery.</p>
           <div className="rounded-lg border border-slate-800 bg-slate-900/50 p-3">
-            <div className="text-xs font-semibold text-slate-200 mb-1">Deterministic Engine Policy:</div>
+            <div className="text-xs font-semibold text-slate-200 mb-1">{t('Deterministic Engine Policy:')}</div>
             <p className="text-xs text-slate-400 leading-relaxed">Eligibility determinations are grounded in deterministic backend rules and official data. AI assists citizens with scheme discovery and explanation.</p>
           </div>
         </div>
@@ -56,9 +56,9 @@ export default function Footer() {
         <div className="max-w-[1400px] mx-auto px-6 py-4 flex flex-col md:flex-row justify-between text-xs text-slate-500 gap-2">
           <div>© {new Date().getFullYear()} CivicLink • Government Citizen Platform. All rights reserved.</div>
           <div className="flex gap-4">
-            <span>Privacy Policy</span>
-            <span>Terms of Use</span>
-            <span>Accessibility</span>
+            <span>{t('Privacy Policy')}</span>
+            <span>{t('Terms of Use')}</span>
+            <span>{t('Accessibility')}</span>
           </div>
         </div>
       </div>
