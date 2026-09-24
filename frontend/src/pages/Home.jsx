@@ -121,7 +121,7 @@ export default function Home() {
             <div className="text-xs text-slate-500 mb-2">{t('Popular Focus Areas:')}</div>
             <div className="flex flex-wrap gap-2">
               {FOCUS_TAGS.map((tag) => (
-                <Link key={tag} to={`/schemes?q=${encodeURIComponent(tag)}`} className="text-xs px-3 py-1.5 rounded-full border border-slate-700 bg-slate-900/60 text-slate-200 hover:border-orange-400 hover:text-orange-300 transition-colors"{t(tag)}</Link>
+                <Link key={tag} to={`/schemes?q=${encodeURIComponent(tag)}`} className="text-xs px-3 py-1.5 rounded-full border border-slate-700 bg-slate-900/60 text-slate-200 hover:border-orange-400 hover:text-orange-300 transition-colors">{t(tag)}</Link>
               ))}
             </div>
           </div>
@@ -181,9 +181,9 @@ export default function Home() {
           </div>
           <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
             {[['90', 'Government Schemes'], ['100%', 'Gazette Verified'], ['12', 'Indian Languages'], ['100%', 'Private & Secure']].map(([n, l]) => (
-              <div key={t(l)} className="rounded-xl bg-slate-950/50 border border-slate-800 py-5">
+              <div key={l} className="rounded-xl bg-slate-950/50 border border-slate-800 py-5">
                 <div className="text-3xl font-bold text-orange-400">{n}</div>
-                <div className="text-xs text-slate-400 mt-1">{l}</div>
+                <div className="text-xs text-slate-400 mt-1">{t(l)}</div>
               </div>
             ))}
           </div>
