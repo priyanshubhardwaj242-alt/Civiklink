@@ -15,9 +15,12 @@ ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
 
 # MongoDB connection
-mongo_url = os.environ['MONGO_URL']
-client = AsyncIOMotorClient(mongo_url)
-db = client[os.environ['DB_NAME']]
+# Keep the API bootable even when a local .env file is missing.
+# MongoDB is only required by the status-check demo endpoints.
+mongo_url = os.getenv("MONGO_URL", "mongodb://127.0.0.1:27017")
+db_name = os.getenv("DB_NAME", "civiclink")
+client = AsyncIOMotorClient(mongo_url, serverSelectionTimeoutMS=2000)
+db = client[db_name]
 
 # Create the main app without a prefix
 app = FastAPI()
@@ -40,7 +43,22 @@ class StatusCheckCreate(BaseModel):
 # Add your routes to the router instead of directly to app
 @api_router.get("/")
 async def root():
-    return {"message": "Hello World"}
+    return {"message": "CivicLink API is running", "status": "ok"}
+
+@api_router.get("/health")
+async def health():
+    """Lightweight health endpoint that does not require MongoDB."""
+    mongo_ok = False
+    try:
+        await client.admin.command("ping")
+        mongo_ok = True
+    except Exception:
+        pass
+    return {
+        "status": "ok",
+        "api": "running",
+        "mongodb": "connected" if mongo_ok else "unavailable",
+    }
 
 @api_router.post("/status", response_model=StatusCheck)
 async def create_status_check(input: StatusCheckCreate):
@@ -51,13 +69,20 @@ async def create_status_check(input: StatusCheckCreate):
     doc = status_obj.model_dump()
     doc['timestamp'] = doc['timestamp'].isoformat()
     
-    _ = await db.status_checks.insert_one(doc)
+    try:
+        await db.status_checks.insert_one(doc)
+    except Exception as exc:
+        logger.warning("MongoDB unavailable while creating status check: %s", exc)
     return status_obj
 
 @api_router.get("/status", response_model=List[StatusCheck])
 async def get_status_checks():
     # Exclude MongoDB's _id field from the query results
-    status_checks = await db.status_checks.find({}, {"_id": 0}).to_list(1000)
+    try:
+        status_checks = await db.status_checks.find({}, {"_id": 0}).to_list(1000)
+    except Exception as exc:
+        logger.warning("MongoDB unavailable while reading status checks: %s", exc)
+        return []
     
     # Convert ISO string timestamps back to datetime objects
     for check in status_checks:
