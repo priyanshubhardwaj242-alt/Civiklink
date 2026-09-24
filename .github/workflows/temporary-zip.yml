@@ -11,9 +11,9 @@ jobs:
       - uses: actions/checkout@v4
       - name: Create project ZIP
         run: |
-          zip -r /tmp/CivicLink-project.zip . -x ".git/*" ".github/*"
+          zip -r $GITHUB_WORKSPACE/CivicLink-project.zip . -x ".git/*" ".github/*"
       - uses: actions/upload-artifact@v4
         with:
           name: CivicLink-project
-          path: /tmp/CivicLink-project.zip
+          path: ${{ github.workspace }}/CivicLink-project.zip
           retention-days: 1
