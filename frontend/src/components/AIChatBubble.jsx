@@ -22,6 +22,17 @@ export default function AIChatBubble() {
 
   const currentQ = CHAT_QUESTIONS[step];
 
+  const speak = (text) => {
+    if (!('speechSynthesis' in window)) return;
+    try {
+      window.speechSynthesis.cancel();
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = voiceLocale(language);
+      utterance.rate = 0.95;
+      window.speechSynthesis.speak(utterance);
+    } catch (e) { /* speech is optional */ }
+  };
+
   const submitAnswer = async (answer) => {
     if (!answer) return;
     const newProfile = { ...profile, [currentQ.key]: answer };
@@ -29,15 +40,21 @@ export default function AIChatBubble() {
     const newMsgs = [...msgs, { from: 'user', text: String(answer) }];
 
     if (step + 1 < CHAT_QUESTIONS.length) {
-      newMsgs.push({ from: 'bot', text: t(CHAT_QUESTIONS[step + 1].q) });
+      const nextText = t(CHAT_QUESTIONS[step + 1].q);
+      newMsgs.push({ from: 'bot', text: nextText });
+      speak(nextText);
       setStep(step + 1);
     } else {
-      newMsgs.push({ from: 'bot', text: t('Analyzing your profile against 90 government schemes...') });
+      const analyzingText = t('Analyzing your profile against 90 government schemes...');
+      newMsgs.push({ from: 'bot', text: analyzingText });
+      speak(analyzingText);
       setTimeout(async () => {
         const response = await matchSchemes(newProfile);
         try { localStorage.setItem('civiclink_profile', JSON.stringify(newProfile)); } catch (e) { /* ignore */ }
         try { localStorage.setItem('civiclink_results', JSON.stringify(response.results)); } catch (e) { /* ignore */ }
-        setMsgs((m) => [...m, { from: 'bot', text: `${t('Found {count} matching schemes! Opening results...')}`.replace('{count}', response.results.length) }]);
+        const foundText = `${t('Found {count} matching schemes! Opening results...')}`.replace('{count}', response.results.length);
+        setMsgs((m) => [...m, { from: 'bot', text: foundText }]);
+        speak(foundText);
         setTimeout(() => {
           setOpen(false);
           navigate('/results');
