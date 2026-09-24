@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Civiklink/static/css/main.7e6e14aa.css",
+    "main.js": "/Civiklink/static/js/main.496836ca.js",
+    "index.html": "/Civiklink/index.html",
+    "main.7e6e14aa.css.map": "/Civiklink/static/css/main.7e6e14aa.css.map",
+    "main.496836ca.js.map": "/Civiklink/static/js/main.496836ca.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7e6e14aa.css",
+    "static/js/main.496836ca.js"
+  ]
+}
