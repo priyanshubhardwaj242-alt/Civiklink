@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Sparkles, UserRound, MessageSquare, ListChecks, ArrowRight, Check } from 'lucide-react';
-import { CHAT_QUESTIONS, matchSchemes } from '../mock';
+import { CHAT_QUESTIONS } from '../mock';
+import { matchSchemes } from '../api';
 
 function Method({ icon: Icon, title, desc, active, onClick, color = 'orange' }) {
   const activeCls = active ? `border-${color}-500 bg-${color}-500/10` : 'border-slate-800 bg-[#0f1e37] hover:border-slate-600';
@@ -31,7 +32,7 @@ export default function Recommendations() {
     setMsgs([{ from: 'bot', text: CHAT_QUESTIONS[0].q }]);
   };
 
-  const submit = (val) => {
+  const submit = async (val) => {
     if (!val) return;
     const q = CHAT_QUESTIONS[step];
     const p = { ...profile, [q.key]: val };
@@ -41,17 +42,17 @@ export default function Recommendations() {
       nm.push({ from: 'bot', text: CHAT_QUESTIONS[step + 1].q });
       setStep(step + 1);
     } else {
-      const results = matchSchemes(p);
+      const response = await matchSchemes(p);
       try { localStorage.setItem('civiclink_profile', JSON.stringify(p)); } catch (e) { /* ignore */ }
-      try { localStorage.setItem('civiclink_results', JSON.stringify(results)); } catch (e) { /* ignore */ }
-      nm.push({ from: 'bot', text: `Found ${results.length} matching schemes.` });
+      try { localStorage.setItem('civiclink_results', JSON.stringify(response.results)); } catch (e) { /* ignore */ }
+      nm.push({ from: 'bot', text: `Found ${response.results.length} matching schemes.` });
       setTimeout(() => navigate('/results'), 500);
     }
     setMsgs(nm);
     setInput('');
   };
 
-  const submitNL = () => {
+  const submitNL = async () => {
     const t = nlq.toLowerCase();
     const guess = {
       occupation: t.includes('farmer') ? 'Farmer' : t.includes('artisan') ? 'Artisan / Craftsperson' : t.includes('student') ? 'Student' : t.includes('business') || t.includes('shop') || t.includes('mudra') ? 'Small Business / MSME' : 'Salaried',
@@ -59,9 +60,9 @@ export default function Recommendations() {
       age: '30', category: 'General', income: '2.5 \u2013 5 Lakh', state: 'Delhi',
       need: t.includes('scholarship') ? 'Education / Scholarship' : t.includes('health') || t.includes('ayushman') ? 'Health / Insurance' : t.includes('pension') ? 'Pension / Social Security' : t.includes('housing') ? 'Housing' : t.includes('kisan') || t.includes('farm') ? 'Agriculture Support' : 'Business Loan',
     };
-    const results = matchSchemes(guess);
+    const response = await matchSchemes(guess);
     try { localStorage.setItem('civiclink_profile', JSON.stringify(guess)); } catch (e) { /* ignore */ }
-    try { localStorage.setItem('civiclink_results', JSON.stringify(results)); } catch (e) { /* ignore */ }
+    try { localStorage.setItem('civiclink_results', JSON.stringify(response.results)); } catch (e) { /* ignore */ }
     navigate('/results');
   };
 
@@ -131,10 +132,10 @@ export default function Recommendations() {
         )}
 
         {method === 'form' && (
-          <QuickForm onSubmit={(p) => {
-            const results = matchSchemes(p);
+          <QuickForm onSubmit={async (p) => {
+            const response = await matchSchemes(p);
             try { localStorage.setItem('civiclink_profile', JSON.stringify(p)); } catch (e) { /* ignore */ }
-            try { localStorage.setItem('civiclink_results', JSON.stringify(results)); } catch (e) { /* ignore */ }
+            try { localStorage.setItem('civiclink_results', JSON.stringify(response.results)); } catch (e) { /* ignore */ }
             navigate('/results');
           }} />
         )}
