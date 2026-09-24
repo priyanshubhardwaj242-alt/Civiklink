@@ -40,8 +40,8 @@ export default function Schemes() {
     <div className="max-w-[1400px] mx-auto px-6 py-8 text-slate-100">
       <div className="rounded-2xl border border-slate-800 bg-[#0f1e37] p-6 md:p-8">
         <div className="flex items-center gap-3">
-          <span className="inline-flex items-center gap-1.5 text-xs px-2.5 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 font-medium"><ShieldCheck size={12} /> GAZETTE VERIFIED REPOSITORY</span>
-          <span className="text-xs text-slate-400">90 Schemes Authoritative</span>
+          <span className="inline-flex items-center gap-1.5 text-xs px-2.5 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 font-medium"><ShieldCheck size={12} /> CIVICLINK LOCAL CATALOG</span>
+          <span className="text-xs text-slate-400">Local Scheme Catalog</span>
         </div>
         <div className="mt-4 flex items-center gap-2">
           <BookOpen size={26} className="text-orange-400" />
