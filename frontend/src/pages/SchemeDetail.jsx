@@ -2,8 +2,10 @@ import React from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { ArrowLeft, ShieldCheck, Building2, IndianRupee, Percent, FileText, ExternalLink, ListChecks, CheckCircle2 } from 'lucide-react';
 import { SCHEMES } from '../mock';
+import { useLanguage } from '../i18n';
 
 export default function SchemeDetail() {
+  const { t } = useLanguage();
   const { id } = useParams();
   const navigate = useNavigate();
   const scheme = SCHEMES.find((s) => s.id === id);
@@ -11,8 +13,8 @@ export default function SchemeDetail() {
   if (!scheme) {
     return (
       <div className="max-w-[900px] mx-auto px-6 py-16 text-slate-200 text-center">
-        <h2 className="text-2xl font-bold text-white">Scheme not found</h2>
-        <button onClick={() => navigate('/schemes')} className="mt-4 px-4 py-2 rounded-lg bg-orange-500 text-white">Back to Directory</button>
+        <h2 className="text-2xl font-bold text-white">{t('Scheme not found')}</h2>
+        <button onClick={() => navigate('/schemes')} className="mt-4 px-4 py-2 rounded-lg bg-orange-500 text-white">{t('Back to Directory')}</button>
       </div>
     );
   }
@@ -63,11 +65,11 @@ export default function SchemeDetail() {
 
       <div className="mt-6 rounded-2xl border border-orange-500/25 bg-gradient-to-r from-orange-500/10 to-amber-500/5 p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
         <div>
-          <div className="text-white font-bold text-lg">Ready to Apply?</div>
+          <div className="text-white font-bold text-lg">{t('Ready to Apply?')}</div>
           <div className="text-slate-300 text-sm">Follow the official application route or locate a verified channel partner.</div>
         </div>
         <div className="flex gap-2">
-          <Link to="/partners" className="px-4 py-2.5 rounded-lg border border-slate-700 hover:border-orange-400 hover:text-orange-300 text-slate-200 text-sm font-medium transition-colors">Find Partner</Link>
+          <Link to="/partners" className="px-4 py-2.5 rounded-lg border border-slate-700 hover:border-orange-400 hover:text-orange-300 text-slate-200 text-sm font-medium transition-colors">{t('Find Partner')}</Link>
           <a href="#apply" className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-lg text-white bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-sm font-semibold transition-colors">Apply on Portal <ExternalLink size={14} /></a>
         </div>
       </div>
