@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Sparkles, CheckCircle2, FileText, ListChecks, MapPin, Building2, ChevronRight, ShieldCheck, Printer, Share2 } from 'lucide-react';
+import { useLanguage } from '../i18n';
 
 const TABS = [
   { key: 'schemes', label: 'Schemes', icon: Sparkles },
@@ -19,6 +20,7 @@ const DOCUMENTS = [
 ];
 
 export default function Results() {
+  const { t } = useLanguage();
   const [tab, setTab] = useState('schemes');
   const [results, setResults] = useState([]);
   const [profile, setProfile] = useState({});
@@ -35,9 +37,9 @@ export default function Results() {
     return (
       <div className="max-w-[900px] mx-auto px-6 py-16 text-center text-slate-200">
         <div className="rounded-2xl border border-slate-800 bg-[#0f1e37] p-10">
-          <h2 className="text-2xl font-bold text-white">No results yet</h2>
+          <h2 className="text-2xl font-bold text-white">{t('No results yet')}</h2>
           <p className="mt-2 text-slate-400">Complete the smart matching flow first to see personalized government scheme recommendations.</p>
-          <Link to="/recommendations" className="mt-6 inline-flex items-center gap-2 px-5 py-3 rounded-xl text-white font-semibold bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 transition-colors">Start Smart Matching</Link>
+          <Link to="/recommendations" className="mt-6 inline-flex items-center gap-2 px-5 py-3 rounded-xl text-white font-semibold bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 transition-colors">{t('Start Smart Matching')}</Link>
         </div>
       </div>
     );
@@ -51,7 +53,7 @@ export default function Results() {
         <div className="flex items-start justify-between flex-wrap gap-3">
           <div>
             <div className="inline-flex items-center gap-1.5 text-xs px-2.5 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 font-medium"><CheckCircle2 size={12} /> MATCHING COMPLETE</div>
-            <h1 className="mt-3 text-3xl md:text-4xl font-bold text-white" style={{ fontFamily: 'Georgia, serif' }}>Your Personalized Results</h1>
+            <h1 className="mt-3 text-3xl md:text-4xl font-bold text-white" style={{ fontFamily: 'Georgia, serif' }}>{t('Your Personalized Results')}</h1>
             <p className="mt-2 text-slate-400">Based on your profile{profile.name ? `, ${profile.name}` : ''}. We found <span className="text-orange-300 font-semibold">{results.length} matching schemes</span>.</p>
           </div>
           <div className="flex gap-2">
@@ -115,7 +117,7 @@ export default function Results() {
 
       {tab === 'documents' && (
         <div className="mt-6 rounded-2xl border border-slate-800 bg-[#0f1e37] p-6">
-          <h3 className="text-lg font-bold text-white">Required Documents Checklist</h3>
+          <h3 className="text-lg font-bold text-white">{t('Required Documents Checklist')}</h3>
           <p className="text-sm text-slate-400 mt-1">Keep these ready to apply for the recommended schemes. Tap each to mark as ready.</p>
           <div className="mt-5 space-y-2">
             {DOCUMENTS.map((d) => (
@@ -134,7 +136,7 @@ export default function Results() {
 
       {tab === 'plan' && (
         <div className="mt-6 rounded-2xl border border-slate-800 bg-[#0f1e37] p-6">
-          <h3 className="text-lg font-bold text-white">Personalized Action Plan</h3>
+          <h3 className="text-lg font-bold text-white">{t('Personalized Action Plan')}</h3>
           <p className="text-sm text-slate-400 mt-1">Based on your profile and top recommendation: <span className="text-orange-300 font-medium">{top.scheme.name}</span></p>
           <ol className="mt-5 space-y-3">
             {[
@@ -156,7 +158,7 @@ export default function Results() {
 
       {tab === 'verify' && (
         <div className="mt-6 rounded-2xl border border-slate-800 bg-[#0f1e37] p-6">
-          <h3 className="text-lg font-bold text-white">Verify with CSC / Channel Partner</h3>
+          <h3 className="text-lg font-bold text-white">{t('Verify with CSC / Channel Partner')}</h3>
           <p className="text-sm text-slate-400 mt-1">Get in-person assistance from verified government channel partners.</p>
           <Link to="/partners" className="mt-4 inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-white font-semibold bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 transition-colors"><MapPin size={15} /> Find Nearby Partners</Link>
         </div>
