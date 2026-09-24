@@ -1,8 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useLanguage } from '../../i18n';
 import { Phone, Mail, MapPin, ShieldCheck } from 'lucide-react';
 
 export default function Footer() {
+  const { t } = useLanguage();
   return (
     <footer className="bg-[#0a1628] border-t border-slate-800/70 mt-16">
       <div className="max-w-[1400px] mx-auto px-6 py-10 grid grid-cols-1 md:grid-cols-4 gap-8">
@@ -14,7 +16,7 @@ export default function Footer() {
             <span className="text-white font-bold text-lg">CivicLink</span>
           </div>
           <p className="text-sm text-slate-400 leading-relaxed">
-            CivicLink is a unified national platform connecting citizens with welfare, credit, and subsidy schemes.
+            {t('CivicLink is a unified national platform connecting citizens with welfare, credit, and subsidy schemes.')}
           </p>
           <div className="mt-4 inline-flex items-center gap-1.5 text-emerald-400 text-xs font-medium">
             <ShieldCheck size={14} /> 100% Gazette Verified
@@ -22,13 +24,13 @@ export default function Footer() {
         </div>
 
         <div>
-          <div className="text-xs font-semibold text-slate-500 tracking-widest mb-3">QUICK LINKS</div>
+          <div className="text-xs font-semibold text-slate-500 tracking-widest mb-3">{t('QUICK LINKS')}</div>
           <ul className="space-y-2 text-sm text-slate-300">
-            <li><Link to="/schemes" className="hover:text-orange-400 transition-colors">All Schemes Directory</Link></li>
-            <li><Link to="/recommendations" className="hover:text-orange-400 transition-colors">Smart Scheme Matching</Link></li>
+            <li><Link to="/schemes" className="hover:text-orange-400 transition-colors">{t('All Schemes Directory')}</Link></li>
+            <li><Link to="/recommendations" className="hover:text-orange-400 transition-colors">{t('Smart Scheme Matching')}</Link></li>
             <li><Link to="/calculator" className="hover:text-orange-400 transition-colors">Loan &amp; Subsidy Calculator</Link></li>
-            <li><Link to="/partners" className="hover:text-orange-400 transition-colors">Nearby Partner Centers</Link></li>
-            <li><Link to="/login" className="hover:text-orange-400 transition-colors">Sign In / Portal</Link></li>
+            <li><Link to="/partners" className="hover:text-orange-400 transition-colors">{t('Nearby Partner Centers')}</Link></li>
+            <li><Link to="/login" className="hover:text-orange-400 transition-colors">{t('Sign In / Portal')}</Link></li>
           </ul>
         </div>
 
