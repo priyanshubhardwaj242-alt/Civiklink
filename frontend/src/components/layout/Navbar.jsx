@@ -28,7 +28,7 @@ export default function Navbar() {
               <span className="text-white font-bold text-lg tracking-tight">CivicLink</span>
               <span className="text-[9px] font-semibold bg-orange-500/15 text-orange-400 border border-orange-500/30 px-1.5 py-0.5 rounded uppercase tracking-wider">{t('Official')}</span>
             </div>
-            <div className="text-[10px] text-slate-400"{t('Government Citizen Platform')}</div>
+            <div className="text-[10px] text-slate-400">{t('Government Citizen Platform')}</div>
           </div>
         </Link>
 
