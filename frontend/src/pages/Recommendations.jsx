@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Sparkles, UserRound, MessageSquare, ListChecks, ArrowRight, Check } from 'lucide-react';
 import { CHAT_QUESTIONS } from '../mock';
+import { useLanguage } from '../i18n';
 import { matchSchemes } from '../api';
 
 function Method({ icon: Icon, title, desc, active, onClick, color = 'orange' }) {
@@ -19,6 +20,7 @@ function Method({ icon: Icon, title, desc, active, onClick, color = 'orange' }) 
 }
 
 export default function Recommendations() {
+  const { t } = useLanguage();
   const [method, setMethod] = useState('saved');
   const [profile, setProfile] = useState({});
   const [nlq, setNlq] = useState('');
@@ -108,13 +110,13 @@ export default function Recommendations() {
                 {step >= 0 && step < CHAT_QUESTIONS.length && CHAT_QUESTIONS[step].type === 'choice' && (
                   <div className="mt-3 flex flex-wrap gap-2">
                     {CHAT_QUESTIONS[step].options.map((o) => (
-                      <button key={o} onClick={() => submit(o)} className="text-xs px-3 py-1.5 rounded-full border border-slate-700 bg-slate-900/60 text-slate-200 hover:border-orange-400 hover:text-orange-300 transition-colors">{o}</button>
+                      <button key={o} onClick={() => submit(o)} className="text-xs px-3 py-1.5 rounded-full border border-slate-700 bg-slate-900/60 text-slate-200 hover:border-orange-400 hover:text-orange-300 transition-colors"{t(o)}</button>
                     ))}
                   </div>
                 )}
                 {step >= 0 && step < CHAT_QUESTIONS.length && CHAT_QUESTIONS[step].type !== 'choice' && (
                   <div className="mt-3 flex gap-2">
-                    <input value={input} onChange={(e) => setInput(e.target.value)} onKeyDown={(e) => e.key === 'Enter' && submit(input)} placeholder={CHAT_QUESTIONS[step].placeholder} className="flex-1 bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-orange-400" />
+                    <input value={input} onChange={(e) => setInput(e.target.value)} onKeyDown={(e) => e.key === 'Enter' && submit(input)} placeholder={t(CHAT_QUESTIONS[step].placeholder)} className="flex-1 bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-orange-400" />
                     <button onClick={() => submit(input)} className="px-4 py-2 rounded-lg bg-orange-500 text-white text-sm font-semibold hover:bg-orange-600 transition-colors">Send</button>
                   </div>
                 )}
