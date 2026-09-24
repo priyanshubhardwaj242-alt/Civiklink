@@ -31,7 +31,7 @@ export default function Recommendations() {
 
   const startChat = () => {
     setStep(0);
-    setMsgs([{ from: 'bot', text: CHAT_QUESTIONS[0].q }]);
+    setMsgs([{ from: 'bot', text: t(CHAT_QUESTIONS[0].q) }]);
   };
 
   const submit = async (val) => {
@@ -41,7 +41,7 @@ export default function Recommendations() {
     setProfile(p);
     const nm = [...msgs, { from: 'user', text: String(val) }];
     if (step + 1 < CHAT_QUESTIONS.length) {
-      nm.push({ from: 'bot', text: CHAT_QUESTIONS[step + 1].q });
+      nm.push({ from: 'bot', text: t(CHAT_QUESTIONS[step + 1].q) });
       setStep(step + 1);
     } else {
       const response = await matchSchemes(p);
