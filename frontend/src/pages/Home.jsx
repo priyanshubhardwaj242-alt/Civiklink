@@ -42,7 +42,7 @@ export default function Home() {
               <Sparkles size={18} /> {t('Find Matching Schemes')} <ArrowRight size={17} />
             </Link>
             <Link to="/schemes" className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl text-slate-100 font-semibold border border-slate-700 bg-slate-900/50 hover:bg-slate-800 transition-colors">
-              <Search size={18} /> {t('Explore All 90 Schemes')}
+              <Search size={18} /> {t('Explore Scheme Catalog')}
             </Link>
           </div>
         </div>
