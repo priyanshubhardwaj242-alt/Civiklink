@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Sparkles, {t('Search')}, ArrowRight, ShieldCheck, FileCheck2, Users2, Lock, Briefcase, Sprout, Hammer, GraduationCap, ShieldCheck as Shield, HeartPulse, ChevronRight } from 'lucide-react';
+import { Sparkles, Search, ArrowRight, ShieldCheck, FileCheck2, Users2, Lock, Briefcase, Sprout, Hammer, GraduationCap, ShieldCheck as Shield, HeartPulse, ChevronRight } from 'lucide-react';
 import { CATEGORIES, FOCUS_TAGS } from '../mock';
 import { useLanguage } from '../i18n';
 
@@ -15,7 +15,7 @@ function NumberBadge({ n }) {
 }
 
 export default function Home() {
-  const [search, set{t('Search')}] = useState('');
+  const [search, setSearch] = useState('');
   const { t } = useLanguage();
 
   return (
@@ -42,7 +42,7 @@ export default function Home() {
               <Sparkles size={18} /> {t('Find Matching Schemes')} <ArrowRight size={17} />
             </Link>
             <Link to="/schemes" className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl text-slate-100 font-semibold border border-slate-700 bg-slate-900/50 hover:bg-slate-800 transition-colors">
-              <{t('Search')} size={18} /> {t('Explore All 90 Schemes')}
+              <Search size={18} /> {t('Explore All 90 Schemes')}
             </Link>
           </div>
         </div>
@@ -54,15 +54,15 @@ export default function Home() {
         <div className="rounded-3xl border border-slate-800 bg-gradient-to-br from-[#0f1f38] to-[#0a1628] p-8 md:p-10 grid md:grid-cols-2 gap-8 items-center">
           <div>
             <div className="inline-flex items-center gap-2 text-xs px-3 py-1.5 rounded-full bg-sky-500/15 border border-sky-500/30 text-sky-300 font-medium">
-              <Users2 size={13} /> {t('PERSONALIZED SCHEME MATCHING')}
+              <Users2 size={13} /> {t('Personalized Scheme Matching')}
             </div>
             <h2 className="mt-4 text-2xl md:text-3xl font-bold text-white leading-tight" style={{ fontFamily: 'Georgia, serif' }}>{t('Find Government Schemes You May Be Eligible For')}</h2>
-            <p className="mt-3 text-slate-400">{t('Answer a few questions about your age, category, location, occupation and business needs.')}</p>
+            <p className="mt-3 text-slate-400">{t('Answer a few questions about your age, category, location, occupation and business needs. CivicLink checks your profile against official scheme eligibility rules.')}</p>
             <div className="mt-5 grid sm:grid-cols-2 gap-2">
               {['Personalized scheme matching', 'Rule-based eligibility checks', 'Official government sources', 'No document upload required'].map((f) => (
                 <div key={f} className="flex items-center gap-2 px-3 py-2 rounded-lg bg-slate-900/50 border border-slate-800 text-sm text-slate-300">
                   <span className="w-4 h-4 rounded-full bg-emerald-500/20 border border-emerald-500/40 grid place-items-center"><ShieldCheck size={10} className="text-emerald-400" /></span>
-                  {t(f)}
+                  {f}
                 </div>
               ))}
             </div>
@@ -101,20 +101,20 @@ export default function Home() {
       {/* SEARCH BAR */}
       <section className="max-w-[1400px] mx-auto px-6 mt-14">
         <div className="rounded-2xl border border-slate-800 bg-[#0f1e37] p-6">
-          <h3 className="text-lg font-bold text-white">{t('{t('Search')} Schemes by Keyword or Focus Area')}</h3>
+          <h3 className="text-lg font-bold text-white">{t('Search Schemes by Keyword or Focus Area')}</h3>
           <p className="text-sm text-slate-400 mt-1">{t('Quickly explore schemes using direct keywords or popular welfare topics')}</p>
           <div className="mt-4 flex flex-col md:flex-row gap-2">
             <div className="flex-1 flex items-center gap-2 px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 focus-within:border-orange-500">
-              <{t('Search')} size={16} className="text-slate-400" />
+              <Search size={16} className="text-slate-400" />
               <input
                 value={search}
-                onChange={(e) => set{t('Search')}(e.target.value)}
-                placeholder="{t('{t('Search')} e.g. MUDRA, women, Ayushman...')}"
+                onChange={(e) => setSearch(e.target.value)}
+                placeholder={t('Search e.g. MUDRA, women, Ayushman...')}
                 className="flex-1 bg-transparent text-slate-100 placeholder:text-slate-500 focus:outline-none"
               />
             </div>
             <Link to={`/schemes?q=${encodeURIComponent(search)}`} className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl text-white bg-sky-600 hover:bg-sky-500 transition-colors font-semibold">
-              <{t('Search')} size={16} /> {t('Search')}
+              <Search size={16} /> {t('Search')}
             </Link>
           </div>
           <div className="mt-4">
