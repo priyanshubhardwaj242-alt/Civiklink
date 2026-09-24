@@ -31,7 +31,7 @@ export default function AIChatBubble() {
       setStep(step + 1);
     } else {
       newMsgs.push({ from: 'bot', text: 'Analyzing your profile against 90 government schemes...' });
-      setTimeout(() => {
+      setTimeout(async () => {
         const response = await matchSchemes(newProfile);
         try { localStorage.setItem('civiclink_profile', JSON.stringify(newProfile)); } catch (e) { /* ignore */ }
         try { localStorage.setItem('civiclink_results', JSON.stringify(response.results)); } catch (e) { /* ignore */ }
