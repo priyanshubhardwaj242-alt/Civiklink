@@ -2,8 +2,10 @@ import React, { useMemo, useState, useEffect } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { Search, BookOpen, Building2, ChevronRight, ShieldCheck } from 'lucide-react';
 import { SCHEMES, MINISTRIES, SECTORS, BENEFICIARIES, APPLICATION_ROUTES, CATEGORIES } from '../mock';
+import { useLanguage } from '../i18n';
 
 export default function Schemes() {
+  const { t } = useLanguage();
   const [params] = useSearchParams();
   const initialQ = params.get('q') || '';
   const catFilter = params.get('cat') || '';
@@ -45,7 +47,7 @@ export default function Schemes() {
         </div>
         <div className="mt-4 flex items-center gap-2">
           <BookOpen size={26} className="text-orange-400" />
-          <h1 className="text-3xl md:text-4xl font-bold text-white" style={{ fontFamily: 'Georgia, serif' }}>Government Schemes Directory</h1>
+          <h1 className="text-3xl md:text-4xl font-bold text-white" style={{ fontFamily: 'Georgia, serif' }}>{t('Government Schemes Directory')}</h1>
         </div>
         <p className="mt-2 text-slate-400 max-w-3xl">Search and filter 90 unique Government of India schemes listed in the official DBT Bharat scheme directory.{currentCat ? ` \u2022 Filtered by: ${currentCat.name}` : ''}</p>
 
@@ -54,7 +56,7 @@ export default function Schemes() {
             <Search size={16} className="text-slate-500" />
             <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search schemes by name, keyword, or sector..." className="flex-1 bg-transparent text-slate-100 placeholder:text-slate-500 focus:outline-none" />
           </div>
-          <button className="px-6 py-3 rounded-xl text-white bg-sky-600 hover:bg-sky-500 font-semibold transition-colors">Search</button>
+          <button className="px-6 py-3 rounded-xl text-white bg-sky-600 hover:bg-sky-500 font-semibold transition-colors">{t('Search')}</button>
         </div>
 
         <div className="mt-5 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
