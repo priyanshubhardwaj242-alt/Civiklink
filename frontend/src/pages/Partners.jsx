@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { MapPin, Phone, Navigation, Building2, Search, Loader2 } from 'lucide-react';
 import { PARTNERS } from '../mock';
+import { useLanguage } from '../i18n';
 
 export default function Partners() {
+  const { t } = useLanguage();
   const [q, setQ] = useState('');
   const [state, setState] = useState('All States');
   const [locating, setLocating] = useState(false);
@@ -29,7 +31,7 @@ export default function Partners() {
     <div className="max-w-[1400px] mx-auto px-6 py-8 text-slate-100">
       <div className="rounded-2xl border border-slate-800 bg-[#0f1e37] p-6">
         <div className="inline-flex items-center gap-2 text-xs px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-300"><MapPin size={13} /> LOCATE VERIFIED PARTNERS</div>
-        <h1 className="mt-3 text-3xl md:text-4xl font-bold text-white" style={{ fontFamily: 'Georgia, serif' }}>Find Nearby Partner</h1>
+        <h1 className="mt-3 text-3xl md:text-4xl font-bold text-white" style={{ fontFamily: 'Georgia, serif' }}>{t('Find Nearby Partner')}</h1>
         <p className="mt-2 text-slate-400 max-w-3xl">Locate authorized banks, CSCs, District Industries Centres, and channelizing agencies verified for scheme facilitation.</p>
 
         <div className="mt-5 flex flex-col md:flex-row gap-2">
@@ -71,7 +73,7 @@ export default function Partners() {
       </div>
 
       {filtered.length === 0 && (
-        <div className="mt-8 rounded-2xl border border-slate-800 bg-[#0f1e37] p-10 text-center text-slate-400">No partners found for your search.</div>
+        <div className="mt-8 rounded-2xl border border-slate-800 bg-[#0f1e37] p-10 text-center text-slate-400">{t('No partners found for your search.')}</div>
       )}
     </div>
   );
